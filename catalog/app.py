@@ -5,6 +5,12 @@ Catalog Server - Bazar.com
 Keeps the book catalog (stock, price and topic of every book) in a CSV file
 and exposes it over HTTP REST.
 
+Endpoints
+---------
+GET  /search/<topic>        query-by-subject -> [{"id", "title"}, ...]
+GET  /info/<item_id>        query-by-item    -> {"id", "title", "topic", "quantity", "price"}
+GET  /catalog               the whole catalog (handy for debugging)
+
 The data is persisted on disk in data/catalog.csv. On first start the file is
 created from seed_catalog.csv.
 """
@@ -14,7 +20,7 @@ import logging
 import os
 import shutil
 
-from flask import Flask
+from flask import Flask, jsonify
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.environ.get("DATA_DIR", os.path.join(BASE_DIR, "data"))
@@ -67,6 +73,39 @@ def save_catalog(books):
         for book_id in sorted(books):
             writer.writerow(books[book_id])
     os.replace(tmp, CATALOG_FILE)
+
+
+# --------------------------------------------------------------------------- #
+# REST endpoints
+# --------------------------------------------------------------------------- #
+@app.route("/search/<path:topic>", methods=["GET"])
+def search(topic):
+    """Query-by-subject: return id and title of every book in the topic."""
+    books = load_catalog()
+    result = [
+        {"id": b["id"], "title": b["title"]}
+        for b in books.values()
+        if b["topic"].lower() == topic.strip().lower()
+    ]
+    log.info("search topic=%r -> %d result(s)", topic, len(result))
+    return jsonify(result)
+
+
+@app.route("/info/<int:item_id>", methods=["GET"])
+def info(item_id):
+    """Query-by-item: return all details of one book."""
+    book = load_catalog().get(item_id)
+    if book is None:
+        log.info("info item=%d -> not found", item_id)
+        return jsonify({"error": f"item {item_id} not found"}), 404
+    log.info("info item=%d -> quantity=%d price=%s", item_id, book["quantity"], book["price"])
+    return jsonify(book)
+
+
+@app.route("/catalog", methods=["GET"])
+def whole_catalog():
+    """Return the full catalog (for debugging / the client 'list' command)."""
+    return jsonify(list(load_catalog().values()))
 
 
 if __name__ == "__main__":
