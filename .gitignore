@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.tmp
+# runtime order log is generated while the system runs
+order/data/orders.csv
+catalog/data/catalog.csv
