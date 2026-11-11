@@ -9,6 +9,7 @@ Endpoints
 ---------
 GET  /search/<topic>       -> catalog  GET /search/<topic>
 GET  /info/<item_id>       -> catalog  GET /info/<item_id>
+POST /purchase/<item_id>   -> order    POST /purchase/<item_id>
 """
 
 import logging
@@ -18,6 +19,7 @@ import requests
 from flask import Flask, jsonify
 
 CATALOG_URL = os.environ.get("CATALOG_URL", "http://localhost:5001")
+ORDER_URL = os.environ.get("ORDER_URL", "http://localhost:5002")
 TIMEOUT = 10
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [FRONTEND] %(message)s")
@@ -49,7 +51,14 @@ def info(item_id):
     return forward("GET", f"{CATALOG_URL}/info/{item_id}")
 
 
+@app.route("/purchase/<int:item_id>", methods=["POST"])
+def purchase(item_id):
+    log.info("purchase(%d)", item_id)
+    return forward("POST", f"{ORDER_URL}/purchase/{item_id}")
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    log.info("Front-end listening on port %d (catalog=%s)", port, CATALOG_URL)
+    log.info("Front-end listening on port %d (catalog=%s, order=%s)",
+             port, CATALOG_URL, ORDER_URL)
     app.run(host="0.0.0.0", port=port, threaded=True)
