@@ -33,7 +33,7 @@ ORDERS_FILE = os.path.join(DATA_DIR, "orders.csv")
 FIELDS = ["order_id", "item_id", "title", "price", "timestamp"]
 
 # Where the catalog server lives. In docker-compose this is the service name.
-CATALOG_URL = os.environ.get("CATALOG_URL", "http://localhost:5001")
+CATALOG_URL = os.environ.get("CATALOG_URL", "http://127.0.0.1:5001")
 TIMEOUT = 5  # seconds for calls to the catalog
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [ORDER] %(message)s")

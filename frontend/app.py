@@ -18,8 +18,8 @@ import os
 import requests
 from flask import Flask, jsonify
 
-CATALOG_URL = os.environ.get("CATALOG_URL", "http://localhost:5001")
-ORDER_URL = os.environ.get("ORDER_URL", "http://localhost:5002")
+CATALOG_URL = os.environ.get("CATALOG_URL", "http://127.0.0.1:5001")
+ORDER_URL = os.environ.get("ORDER_URL", "http://127.0.0.1:5002")
 TIMEOUT = 10
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [FRONTEND] %(message)s")
