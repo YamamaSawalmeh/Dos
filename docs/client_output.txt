@@ -1,0 +1,99 @@
+------------------------------------------------------------
+Bazar.com demo
+------------------------------------------------------------
+
+> search('distributed systems')
+  ID   TITLE
+  1    How to get a good grade in DOS in 40 minutes a day
+  2    RPCs for Noobs
+
+> search('undergraduate school')
+  ID   TITLE
+  3    Xen and the Art of Surviving Undergraduate School
+  4    Cooking for the Impatient Undergrad
+
+> search('cooking')
+  No books found for this topic.
+
+> info(1)
+  Title    : How to get a good grade in DOS in 40 minutes a day
+  Topic    : distributed systems
+  In stock : 10
+  Price    : $40.00
+
+> info(2)
+  Title    : RPCs for Noobs
+  Topic    : distributed systems
+  In stock : 5
+  Price    : $50.00
+
+> info(99)
+  ERROR: item 99 not found
+
+> purchase(1)
+  bought book How to get a good grade in DOS in 40 minutes a day
+
+> purchase(3)
+  bought book Xen and the Art of Surviving Undergraduate School
+
+> info(1)
+  Title    : How to get a good grade in DOS in 40 minutes a day
+  Topic    : distributed systems
+  In stock : 9
+  Price    : $40.00
+
+> set price(4, 30)
+  Cooking for the Impatient Undergrad now costs $30.00
+
+> info(4)
+  Title    : Cooking for the Impatient Undergrad
+  Topic    : undergraduate school
+  In stock : 6
+  Price    : $30.00
+
+> purchase(2)
+  bought book RPCs for Noobs
+
+> purchase(2)
+  bought book RPCs for Noobs
+
+> purchase(2)
+  bought book RPCs for Noobs
+
+> purchase(2)
+  bought book RPCs for Noobs
+
+> purchase(2)
+  bought book RPCs for Noobs
+
+> purchase(2)
+  purchase failed: out of stock (RPCs for Noobs)
+
+> restock(2, +3)
+  RPCs for Noobs now has 3 in stock
+
+> purchase(2)
+  bought book RPCs for Noobs
+
+> 5 concurrent purchase(2) requests
+  [1] bought book RPCs for Noobs
+  [2] bought book RPCs for Noobs
+  [3] purchase failed: out of stock (RPCs for Noobs)
+  [4] purchase failed: out of stock (RPCs for Noobs)
+  [5] purchase failed: out of stock (RPCs for Noobs)
+  2 succeeded, 3 failed
+
+> orders
+  #    ITEM  PRICE    TITLE
+  1    1     $40.00   How to get a good grade in DOS in 40 minutes a day
+  2    3     $35.00   Xen and the Art of Surviving Undergraduate School
+  3    2     $50.00   RPCs for Noobs
+  4    2     $50.00   RPCs for Noobs
+  5    2     $50.00   RPCs for Noobs
+  6    2     $50.00   RPCs for Noobs
+  7    2     $50.00   RPCs for Noobs
+  8    2     $50.00   RPCs for Noobs
+  9    2     $50.00   RPCs for Noobs
+  10   2     $50.00   RPCs for Noobs
+
+------------------------------------------------------------

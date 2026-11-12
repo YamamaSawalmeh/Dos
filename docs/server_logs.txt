@@ -1,0 +1,101 @@
+2026-11-07 09:46:18,087 [CATALOG] Created /app/data/catalog.csv from seed file
+2026-11-07 09:46:18,087 [CATALOG] Catalog server listening on port 5001
+2026-11-07 09:46:18,528 [ORDER] Order server listening on port 5002 (catalog at http://catalog:5001)
+2026-11-07 09:46:18,875 [FRONTEND] Front-end listening on port 5000 (catalog=http://catalog:5001, order=http://order:5002)
+2026-11-07 09:46:34,338 [FRONTEND] search('distributed systems')
+2026-11-07 09:46:34,344 [FRONTEND] GET http://catalog:5001/search/distributed systems -> 200
+2026-11-07 09:46:34,374 [FRONTEND] search('undergraduate school')
+2026-11-07 09:46:34,379 [FRONTEND] GET http://catalog:5001/search/undergraduate school -> 200
+2026-11-07 09:46:34,385 [FRONTEND] search('cooking')
+2026-11-07 09:46:34,390 [FRONTEND] GET http://catalog:5001/search/cooking -> 200
+2026-11-07 09:46:34,440 [ORDER] bought book How to get a good grade in DOS in 40 minutes a day
+2026-11-07 09:46:34,477 [ORDER] bought book Xen and the Art of Surviving Undergraduate School
+2026-11-07 09:46:34,532 [ORDER] bought book RPCs for Noobs
+2026-11-07 09:46:34,550 [ORDER] bought book RPCs for Noobs
+2026-11-07 09:46:34,343 [CATALOG] search topic='distributed systems' -> 2 result(s)
+2026-11-07 09:46:34,396 [FRONTEND] info(1)
+2026-11-07 09:46:34,567 [ORDER] bought book RPCs for Noobs
+2026-11-07 09:46:34,400 [FRONTEND] GET http://catalog:5001/info/1 -> 200
+2026-11-07 09:46:34,584 [ORDER] bought book RPCs for Noobs
+2026-11-07 09:46:34,407 [FRONTEND] info(2)
+2026-11-07 09:46:34,411 [FRONTEND] GET http://catalog:5001/info/2 -> 200
+2026-11-07 09:46:34,601 [ORDER] bought book RPCs for Noobs
+2026-11-07 09:46:34,614 [ORDER] purchase item=2 failed: out of stock
+2026-11-07 09:46:34,637 [ORDER] bought book RPCs for Noobs
+2026-11-07 09:46:34,377 [CATALOG] search topic='undergraduate school' -> 2 result(s)
+2026-11-07 09:46:34,680 [ORDER] bought book RPCs for Noobs
+2026-11-07 09:46:34,684 [ORDER] bought book RPCs for Noobs
+2026-11-07 09:46:34,686 [ORDER] purchase item=2 failed: out of stock
+2026-11-07 09:46:34,417 [FRONTEND] info(99)
+2026-11-07 09:46:34,421 [FRONTEND] GET http://catalog:5001/info/99 -> 404
+2026-11-07 09:46:34,688 [ORDER] purchase item=2 failed: out of stock
+2026-11-07 09:46:34,690 [ORDER] purchase item=2 failed: out of stock
+2026-11-07 09:46:34,427 [FRONTEND] purchase(1)
+2026-11-07 09:46:34,388 [CATALOG] search topic='cooking' -> 0 result(s)
+2026-11-07 09:46:34,399 [CATALOG] info item=1 -> quantity=10 price=40.0
+2026-11-07 09:46:34,409 [CATALOG] info item=2 -> quantity=5 price=50.0
+2026-11-07 09:46:34,441 [FRONTEND] POST http://order:5002/purchase/1 -> 200
+2026-11-07 09:46:34,467 [FRONTEND] purchase(3)
+2026-11-07 09:46:34,479 [FRONTEND] POST http://order:5002/purchase/3 -> 200
+2026-11-07 09:46:34,420 [CATALOG] info item=99 -> not found
+2026-11-07 09:46:34,485 [FRONTEND] info(1)
+2026-11-07 09:46:34,488 [FRONTEND] GET http://catalog:5001/info/1 -> 200
+2026-11-07 09:46:34,501 [FRONTEND] info(4)
+2026-11-07 09:46:34,434 [CATALOG] info item=1 -> quantity=10 price=40.0
+2026-11-07 09:46:34,438 [CATALOG] update item=1 {'quantity_delta': -1} -> quantity=9 price=40.0
+2026-11-07 09:46:34,506 [FRONTEND] GET http://catalog:5001/info/4 -> 200
+2026-11-07 09:46:34,472 [CATALOG] info item=3 -> quantity=8 price=35.0
+2026-11-07 09:46:34,476 [CATALOG] update item=3 {'quantity_delta': -1} -> quantity=7 price=35.0
+2026-11-07 09:46:34,487 [CATALOG] info item=1 -> quantity=9 price=40.0
+2026-11-07 09:46:34,512 [FRONTEND] info(2)
+2026-11-07 09:46:34,516 [FRONTEND] GET http://catalog:5001/info/2 -> 200
+2026-11-07 09:46:34,495 [CATALOG] update item=4 {'price': 30} -> quantity=6 price=30.0
+2026-11-07 09:46:34,505 [CATALOG] info item=4 -> quantity=6 price=30.0
+2026-11-07 09:46:34,522 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,534 [FRONTEND] POST http://order:5002/purchase/2 -> 200
+2026-11-07 09:46:34,515 [CATALOG] info item=2 -> quantity=5 price=50.0
+2026-11-07 09:46:34,539 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,551 [FRONTEND] POST http://order:5002/purchase/2 -> 200
+2026-11-07 09:46:34,557 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,568 [FRONTEND] POST http://order:5002/purchase/2 -> 200
+2026-11-07 09:46:34,574 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,585 [FRONTEND] POST http://order:5002/purchase/2 -> 200
+2026-11-07 09:46:34,591 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,602 [FRONTEND] POST http://order:5002/purchase/2 -> 200
+2026-11-07 09:46:34,527 [CATALOG] info item=2 -> quantity=5 price=50.0
+2026-11-07 09:46:34,608 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,531 [CATALOG] update item=2 {'quantity_delta': -1} -> quantity=4 price=50.0
+2026-11-07 09:46:34,545 [CATALOG] info item=2 -> quantity=4 price=50.0
+2026-11-07 09:46:34,615 [FRONTEND] POST http://order:5002/purchase/2 -> 409
+2026-11-07 09:46:34,628 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,548 [CATALOG] update item=2 {'quantity_delta': -1} -> quantity=3 price=50.0
+2026-11-07 09:46:34,638 [FRONTEND] POST http://order:5002/purchase/2 -> 200
+2026-11-07 09:46:34,652 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,562 [CATALOG] info item=2 -> quantity=3 price=50.0
+2026-11-07 09:46:34,566 [CATALOG] update item=2 {'quantity_delta': -1} -> quantity=2 price=50.0
+2026-11-07 09:46:34,654 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,579 [CATALOG] info item=2 -> quantity=2 price=50.0
+2026-11-07 09:46:34,655 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,659 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,661 [FRONTEND] purchase(2)
+2026-11-07 09:46:34,681 [FRONTEND] POST http://order:5002/purchase/2 -> 200
+2026-11-07 09:46:34,583 [CATALOG] update item=2 {'quantity_delta': -1} -> quantity=1 price=50.0
+2026-11-07 09:46:34,686 [FRONTEND] POST http://order:5002/purchase/2 -> 200
+2026-11-07 09:46:34,596 [CATALOG] info item=2 -> quantity=1 price=50.0
+2026-11-07 09:46:34,688 [FRONTEND] POST http://order:5002/purchase/2 -> 409
+2026-11-07 09:46:34,690 [FRONTEND] POST http://order:5002/purchase/2 -> 409
+2026-11-07 09:46:34,600 [CATALOG] update item=2 {'quantity_delta': -1} -> quantity=0 price=50.0
+2026-11-07 09:46:34,692 [FRONTEND] POST http://order:5002/purchase/2 -> 409
+2026-11-07 09:46:34,613 [CATALOG] info item=2 -> quantity=0 price=50.0
+2026-11-07 09:46:34,622 [CATALOG] update item=2 {'quantity_delta': 3} -> quantity=3 price=50.0
+2026-11-07 09:46:34,632 [CATALOG] info item=2 -> quantity=3 price=50.0
+2026-11-07 09:46:34,636 [CATALOG] update item=2 {'quantity_delta': -1} -> quantity=2 price=50.0
+2026-11-07 09:46:34,663 [CATALOG] info item=2 -> quantity=2 price=50.0
+2026-11-07 09:46:34,664 [CATALOG] info item=2 -> quantity=2 price=50.0
+2026-11-07 09:46:34,671 [CATALOG] info item=2 -> quantity=2 price=50.0
+2026-11-07 09:46:34,678 [CATALOG] update item=2 {'quantity_delta': -1} -> quantity=1 price=50.0
+2026-11-07 09:46:34,679 [CATALOG] info item=2 -> quantity=1 price=50.0
+2026-11-07 09:46:34,681 [CATALOG] update item=2 {'quantity_delta': -1} -> quantity=0 price=50.0
+2026-11-07 09:46:34,682 [CATALOG] info item=2 -> quantity=0 price=50.0
+2026-11-07 09:46:34,683 [CATALOG] update item=2 rejected: out of stock
+2026-11-07 09:46:34,686 [CATALOG] update item=2 rejected: out of stock
