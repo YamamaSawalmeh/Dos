@@ -1,0 +1,45 @@
+# Bazar.com - three microservices, each in its own Linux container.
+# Services find each other by service name on the compose network
+# (http://catalog:5001, http://order:5002).
+services:
+  catalog:
+    build:
+      context: .
+      dockerfile: catalog/Dockerfile
+    container_name: bazar-catalog
+    ports:
+      - "5001:5001"
+    volumes:
+      - catalog-data:/app/data      # catalog.csv survives container restarts
+
+  order:
+    build:
+      context: .
+      dockerfile: order/Dockerfile
+    container_name: bazar-order
+    environment:
+      - CATALOG_URL=http://catalog:5001
+    ports:
+      - "5002:5002"
+    volumes:
+      - order-data:/app/data        # orders.csv survives container restarts
+    depends_on:
+      - catalog
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: bazar-frontend
+    environment:
+      - CATALOG_URL=http://catalog:5001
+      - ORDER_URL=http://order:5002
+    ports:
+      - "5000:5000"
+    depends_on:
+      - catalog
+      - order
+
+volumes:
+  catalog-data:
+  order-data:
